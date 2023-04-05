@@ -20,3 +20,7 @@ export function deleteRoom(id) {
   const roomId = { _id: new ObjectId(id) };
   return fetchCollection("channel").deleteOne(roomId);
 }
+
+export function findUser(username) {
+  return fetchCollection("user").findOne({ username: username });
+}
