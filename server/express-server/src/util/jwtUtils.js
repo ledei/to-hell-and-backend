@@ -25,7 +25,7 @@ function generateToken(data) {
 
   let payload = {
     username: data.username,
-    role: "user",
+    role: data.role,
   };
 
   let token = jwt.sign(payload, process.env.PRIVATE_JWT_KEY, payloadOptions);
