@@ -24,3 +24,7 @@ export function deleteRoom(id) {
 export function findUser(username) {
   return fetchCollection("user").findOne({ username: username });
 }
+
+export function createUser(quary) {
+  return fetchCollection("user").insertOne(quary);
+}
