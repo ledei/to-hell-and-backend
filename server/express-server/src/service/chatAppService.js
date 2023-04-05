@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { fetchCollection } from "../mongodb/mongoClient";
+import { fetchCollection } from "../mongodb/mongoClient.js";
 
 export function createRoom(quary) {
   return fetchCollection("channel").insertOne(quary);

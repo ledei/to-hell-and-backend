@@ -1,5 +1,5 @@
 import { createUser, findUser } from "../service/chatAppService.js";
-import jwtUtils from "../util/jwtUtil.js";
+import jwtUtils from "../util/jwtUtils.js";
 
 async function login(req, res) {
   let user = req.body;
@@ -13,7 +13,7 @@ async function login(req, res) {
       fetchUser.username == user.username &&
       fetchUser.password == user.password
     ) {
-      const token = jwtUtils.generate(fetchUser);
+      const token = jwtUtils.generateToken(fetchUser);
 
       res.status(200);
       res.send(token);
@@ -25,7 +25,7 @@ async function login(req, res) {
 
 async function registerUser(req, res) {
   let UserDetails = {
-    username: req.body.email,
+    username: req.body.username,
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     password: req.body.password,
@@ -40,7 +40,7 @@ async function registerUser(req, res) {
     if (registered == null) {
       const newUser = await createUser(UserDetails);
       if (newUser.acknowledged == true) {
-        const token = jwtUtils.generate(UserDetails);
+        const token = jwtUtils.generateToken(UserDetails);
         res.status(201);
         res.send(token);
       } else {
