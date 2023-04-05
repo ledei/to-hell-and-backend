@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 let db = undefined;
-const dbName = "chatt-app";
+const dbName = "chat-app";
 export function fetchCollection(name) {
   return connectDB().collection(name);
 }
