@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { fetchCollection } from "../mongodb/mongoClient";
+import { fetchCollection } from "../mongodb/mongoClient.js";
 
 export function createRoom(quary) {
   return fetchCollection("channel").insertOne(quary);
@@ -19,4 +19,12 @@ export function updateRoom(quary) {
 export function deleteRoom(id) {
   const roomId = { _id: new ObjectId(id) };
   return fetchCollection("channel").deleteOne(roomId);
+}
+
+export function findUser(username) {
+  return fetchCollection("user").findOne({ username: username });
+}
+
+export function createUser(quary) {
+  return fetchCollection("user").insertOne(quary);
 }
