@@ -1,4 +1,4 @@
-import jwtUtils from "../util/jwtUtil.js";
+import jwtUtils from "../util/jwtUtils.js";
 
 function authorization(req, res, next) {
   const authHeader = req.headers["authorization"];

@@ -1,9 +1,8 @@
-import { express } from "express";
+import express from "express";
+import chatAppController from "../controller/chatAppController.js";
 
 const router = express.Router();
 
-router.get("/", req, (res) => {});
-
-router.put("/channel");
+router.put("/channel", chatAppController.createChannel);
 
 export default router;
