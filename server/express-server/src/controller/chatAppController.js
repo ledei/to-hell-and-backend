@@ -1,6 +1,7 @@
 import {
   createRoom,
   findRoom,
+  getAllRooms,
   getRoom,
   updateRoom,
   updateUserChannel,
@@ -50,4 +51,10 @@ async function getChannel(req, res) {
   res.send(channel);
 }
 
-export default { createChannel, sendChannelMsg, getChannel };
+async function getAllChannels(req, res) {
+  const channels = await getAllRooms();
+
+  res.send(channels);
+}
+
+export default { createChannel, sendChannelMsg, getChannel, getAllChannels };

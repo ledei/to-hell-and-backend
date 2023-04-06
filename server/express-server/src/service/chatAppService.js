@@ -5,6 +5,10 @@ export function createRoom(quary) {
   return fetchCollection("channel").insertOne(quary);
 }
 
+export function getAllRooms() {
+  return fetchCollection("channel").find().toArray();
+}
+
 export function findRoom(name) {
   const roomName = { name: name };
   return fetchCollection("channel").findOne(roomName);
