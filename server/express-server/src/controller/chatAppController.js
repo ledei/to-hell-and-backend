@@ -1,4 +1,8 @@
-import { createRoom, findRoom } from "../service/chatAppService.js";
+import {
+  createRoom,
+  findRoom,
+  updateUserChannel,
+} from "../service/chatAppService.js";
 
 async function createChannel(req, res) {
   const room = {
@@ -12,7 +16,15 @@ async function createChannel(req, res) {
     room.date = new Date();
     const newRoom = await createRoom(room);
 
-    res.send(newRoom);
+    const userData = {
+      username: req.user.username,
+      channelId: newRoom.insertedId,
+    };
+    const addNewChannel = await updateUserChannel(userData);
+    res.send(addNewChannel);
+  } else {
+    res.status(400);
+    res.send("room name already exist");
   }
 }
 

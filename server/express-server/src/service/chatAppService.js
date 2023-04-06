@@ -33,3 +33,9 @@ export function findUser(username) {
 export function createUser(quary) {
   return fetchCollection("user").insertOne(quary);
 }
+
+export function updateUserChannel(quary) {
+  const username = { username: quary.username };
+  const data = { $push: { channels: quary.channelId } };
+  return fetchCollection("user").updateOne(username, data);
+}
