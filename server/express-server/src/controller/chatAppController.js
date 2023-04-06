@@ -1,6 +1,7 @@
 import {
   createRoom,
   findRoom,
+  updateRoom,
   updateUserChannel,
 } from "../service/chatAppService.js";
 
@@ -28,4 +29,18 @@ async function createChannel(req, res) {
   }
 }
 
-export default { createChannel };
+async function sendChannelMsg(req, res) {
+  const data = {
+    id: req.params.id,
+    msg: {
+      author: req.user.username,
+      content: req.body.msg,
+      date: new Date(),
+    },
+  };
+
+  const sendMsg = await updateRoom(data);
+  res.send(sendMsg);
+}
+
+export default { createChannel, sendChannelMsg };
