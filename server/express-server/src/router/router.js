@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.put("/channel", chatAppController.createChannel);
 router.post("/channel/:id", chatAppController.sendChannelMsg);
+router.get("/channel/:id", chatAppController.getChannel);
 
 export default router;

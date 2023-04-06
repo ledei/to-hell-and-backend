@@ -1,6 +1,7 @@
 import {
   createRoom,
   findRoom,
+  getRoom,
   updateRoom,
   updateUserChannel,
 } from "../service/chatAppService.js";
@@ -43,4 +44,10 @@ async function sendChannelMsg(req, res) {
   res.send(sendMsg);
 }
 
-export default { createChannel, sendChannelMsg };
+async function getChannel(req, res) {
+  const channel = await getRoom(req.params.id);
+
+  res.send(channel);
+}
+
+export default { createChannel, sendChannelMsg, getChannel };
