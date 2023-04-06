@@ -15,7 +15,7 @@ async function createChannel(req, res) {
 
   const existingRoom = await findRoom(room.name);
   if (existingRoom == null) {
-    room.date = new Date();
+    room.created = new Date();
     const newRoom = await createRoom(room);
 
     const userData = {
@@ -36,7 +36,7 @@ async function sendChannelMsg(req, res) {
     msg: {
       author: req.user.username,
       content: req.body.msg,
-      date: new Date(),
+      sent: new Date(),
     },
   };
 
