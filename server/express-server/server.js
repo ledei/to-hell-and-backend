@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import authRouter from "./src/router/authRouter.js";
+import jwtChecker from "./src/middleware/jwtChecker.js";
+import router from "./src/router/router.js";
 
 const app = express();
 const port = 3030;
@@ -14,6 +16,7 @@ app.get("/health", (req, res) => {
 });
 
 app.use(authRouter);
+app.use("/ducks/api", jwtChecker.authorization, router);
 
 app.listen(port, () => {
   console.log("server is running on port " + port);

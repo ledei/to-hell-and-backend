@@ -5,6 +5,11 @@ export function createRoom(quary) {
   return fetchCollection("channel").insertOne(quary);
 }
 
+export function findRoom(name) {
+  const roomName = { name: name };
+  return fetchCollection("channel").findOne(roomName);
+}
+
 export function getRoom(id) {
   const roomId = { _id: new ObjectId(id) };
   return fetchCollection("channel").findOne(roomId);
@@ -27,4 +32,10 @@ export function findUser(username) {
 
 export function createUser(quary) {
   return fetchCollection("user").insertOne(quary);
+}
+
+export function updateUserChannel(quary) {
+  const username = { username: quary.username };
+  const data = { $push: { channels: quary.channelId } };
+  return fetchCollection("user").updateOne(username, data);
 }
