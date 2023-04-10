@@ -1,5 +1,6 @@
 import {
   createRoom,
+  deleteRoom,
   findRoom,
   getAllRooms,
   getRoom,
@@ -57,4 +58,22 @@ async function getAllChannels(req, res) {
   res.send(channels);
 }
 
-export default { createChannel, sendChannelMsg, getChannel, getAllChannels };
+async function deleteChannel(req, res) {
+  const channel = await getRoom(req.params.id);
+
+  if (channel.owner == req.user.username) {
+    const deleted = await deleteRoom(req.params.id);
+
+    res.send(deleted);
+  } else {
+    return res.status(401).send("unauthorized");
+  }
+}
+
+export default {
+  createChannel,
+  sendChannelMsg,
+  getChannel,
+  getAllChannels,
+  deleteChannel,
+};
