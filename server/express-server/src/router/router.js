@@ -7,5 +7,6 @@ router.put("/channel", chatAppController.createChannel);
 router.post("/channel/:id", chatAppController.sendChannelMsg);
 router.get("/channel/:id", chatAppController.getChannel);
 router.get("/channel", chatAppController.getAllChannels);
+router.delete("/channel/:id", chatAppController.deleteChannel);
 
 export default router;
