@@ -1,7 +1,7 @@
 import {
   createBroadcastMsg,
   getBroadcastChannel,
-} from "../service/chatAppService";
+} from "../service/chatAppService.js";
 
 async function broadcastMsg(req, res) {
   const msg = {
@@ -10,8 +10,12 @@ async function broadcastMsg(req, res) {
     date: new Date(),
   };
 
-  const sendMsg = createBroadcastMsg(msg);
-  res.status(201).send(sendMsg);
+  if (req.user.role == "admin") {
+    const sendMsg = createBroadcastMsg(msg);
+    res.status(201).send(sendMsg);
+  } else {
+    return res.status(401).send("unauthorized");
+  }
 }
 
 async function getBroadcastHistory(req, res) {
