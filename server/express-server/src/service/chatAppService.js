@@ -44,10 +44,10 @@ export function updateUserChannel(quary) {
   return fetchCollection("user").updateOne(username, data);
 }
 
-export function createBroadcastChannel(quary) {
+export function createBroadcastMsg(quary) {
   return fetchCollection("broadcast").insertOne(quary);
-};
+}
 
 export function getBroadcastChannel() {
   return fetchCollection("broadcast").find().toArray();
-};
+}
