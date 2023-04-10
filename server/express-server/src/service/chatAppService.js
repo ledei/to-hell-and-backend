@@ -43,3 +43,11 @@ export function updateUserChannel(quary) {
   const data = { $push: { channels: quary.channelId } };
   return fetchCollection("user").updateOne(username, data);
 }
+
+export function createBroadcastChannel(quary) {
+  return fetchCollection("broadcast").insertOne(quary);
+};
+
+export function getBroadcastChannel() {
+  return fetchCollection("broadcast").find().toArray();
+};
