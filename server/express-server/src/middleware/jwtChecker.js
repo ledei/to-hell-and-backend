@@ -18,4 +18,5 @@ function authorization(req, res, next) {
     }
   }
 }
+
 export default { authorization };

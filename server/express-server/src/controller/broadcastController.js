@@ -1,21 +1,27 @@
-import { createBroadcastChannel, getBroadcastChannel } from "../service/chatAppService"
+import {
+  createBroadcastMsg,
+  getBroadcastChannel,
+} from "../service/chatAppService.js";
 
-async function createBroadcastRoom (req, res) {
-    const room = {
-        name: "broadcast",
-        owner: "admin",
-        message: []
-    }
+async function broadcastMsg(req, res) {
+  const msg = {
+    title: req.body.title,
+    content: req.body.content,
+    date: new Date(),
+  };
 
-    const broadcastChannel = await createBroadcastChannel(room)
+  if (req.user.role == "admin") {
+    const sendMsg = createBroadcastMsg(msg);
+    res.status(201).send(sendMsg);
+  } else {
+    return res.status(401).send("unauthorized");
+  }
+}
 
-    res.send(broadcastChannel);
-};
+async function getBroadcastHistory(req, res) {
+  const history = await getBroadcastChannel();
 
-async function getBroadcastHistory (req, res) {
-    const history = await getBroadcastChannel();
+  res.send(history);
+}
 
-    res.send(history);
-};
-
-export default { createBroadcastRoom, getBroadcastHistory }
+export default { getBroadcastHistory, broadcastMsg };
