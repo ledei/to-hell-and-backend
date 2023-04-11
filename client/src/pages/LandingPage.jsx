@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+import FetchChannels from "../components/FetchChannels";
+
 export function LandingPage(){
+    const [channels, setChannels] = useState([]); 
+
+    useEffect(()=>{
+        FetchChannels().then((channels)=>{
+            setChannels(channels)
+        })
+    },[])
 
     function handleChannels(e){
         console.log(e.target.value);
@@ -20,12 +30,9 @@ export function LandingPage(){
             <label htmlFor="channels">Välj kanal</label>
             <select onChange={(e)=>handleChannels(e)} name="channels"  className="test">
                 <option value="">Välj en kanal</option>
-                <option value="1">kanal1</option>
-                <option value="2">kanal2</option>
-                <option value="3">kanal3</option>
-                <option value="4">kanal4</option>
-                <option value="5">kanal5</option>
-                <option value="6">kanal6</option>
+                {channels.map((channel)=>{
+                     <option value={channel._id}>{channel.name}</option>
+                })}
             </select>
         </section>
         </>
