@@ -1,0 +1,9 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-page-logotype {
+    width: 10em;
+}
