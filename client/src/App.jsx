@@ -1,3 +1,5 @@
+import { LandingPage } from "./pages/LandingPage"
+
 
 
 function App() {
@@ -5,6 +7,7 @@ function App() {
 
   return (
     <div className="App">
+    <LandingPage/>
     </div>
   )
 }
