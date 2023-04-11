@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import FetchChannels from "../components/FetchChannels";
 import FetchBroadcast from "../components/FetchBroadcast";
+import { io } from 'socket.io-client';
 
 export function LandingPage(){
     const [channels, setChannels] = useState([]); 
@@ -12,10 +13,24 @@ export function LandingPage(){
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
-        FetchBroadcast().then((msg)=>{
-            let latestBroadcastMsg = msg.length - 1
-            setBroadcast(msg[latestBroadcastMsg])
-        })
+        // FetchBroadcast().then((msg)=>{
+        //     let latestBroadcastMsg = msg.length - 1
+        //     setBroadcast(msg[latestBroadcastMsg])
+        // })
+
+        let socket = io("ws://127.0.0.1:3000/", {
+        extraHeaders: {
+          "authorization": "Bearer " + sessionStorage.getItem("authToken")
+        }
+      })
+
+     socket.on("connection", resp => {
+        console.log(resp);
+      });
+
+      socket.on("broadcast", msg => {
+        setBroadcast(msg)
+      });
     },[])
 
     
