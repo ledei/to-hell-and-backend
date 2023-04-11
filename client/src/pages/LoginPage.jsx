@@ -1,7 +1,7 @@
 export function LoginPage() {
     return (
 
-        <div class="login-page">
+        <section class="login-page">
             <img class="first-page-logotype" src="./src/img/duck.png" alt="duck" />
 
             <label for="username">Användarnamn:</label>
@@ -9,7 +9,7 @@ export function LoginPage() {
             <label for="password">Lösenord:</label>
             <input type="password" id="password" onChange={ (e) => console.log(e.target.value)}/>
             <button>Login</button>
-        </div>
+        </section>
 
     )
 
