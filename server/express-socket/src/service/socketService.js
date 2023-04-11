@@ -1,7 +1,6 @@
 import { Server } from "socket.io";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-dotenv.config();
+import jwtUtils from "../utils/jwtUtils.js";
+import { error } from "console";
 
 const options = {
   cors: {
@@ -13,11 +12,15 @@ let io = undefined;
 let clients = [];
 
 function handleConnectAndDisconnect(socket) {
-  const authHeader = socket.handshake.headers.authorization;
-  const token = authHeader && authHeader.replace("Bearer ", "");
-  const jwtData = jwt.verify(token, process.env.PUBLIC_JWT_KEY);
-  const username = jwtData.username;
-  if (username in clients == false) {
+  let username = undefined;
+  try {
+    const claims = jwtUtils.userVerification(socket);
+    username = claims.username;
+  } catch (err) {
+    console.log(socket.id, err.serverMessage);
+  }
+
+  if (username in clients == false && username != undefined) {
     clients[username] = [];
     console.log("new user connected");
     clients[username].push(socket.id);
