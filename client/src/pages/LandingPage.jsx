@@ -41,9 +41,6 @@ export function LandingPage(){
       });
     },[])
 
-    
-    
-
 
     function handleChannels(e){
         let roomId = e.target.value

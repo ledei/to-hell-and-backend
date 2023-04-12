@@ -22,7 +22,7 @@ export default async function Login(username,password) {
   if (response.status === 400) {
      return await response.text();
   } else if (response.status === 404) {
-     return "Missin authentication details";
+     return "Missing authentication details";
   } else {
     const authorizationToken = await response.text();
     sessionStorage.setItem("authToken", authorizationToken);
