@@ -43,7 +43,6 @@ function broadcast(channel, message) {
 }
 
 function sendToRoom(room, channel, message) {
-  console.log(room);
   io.to(room).emit(channel, message);
 }
 
