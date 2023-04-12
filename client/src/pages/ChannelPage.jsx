@@ -4,14 +4,23 @@ import { useNavigate, useParams } from "react-router-dom";
 import FetchChatRoom from "../components/FetchChatRoom";
 import SendMsg from "../components/SendMsg";
 import { io } from "socket.io-client";
+import DeleteChannel from "../components/DeleteChannel";
+import DecodeJWT from "../components/DecodeJWT";
 export function ChannelPage() {
+    let navigate = useNavigate()
+
     const {id}  = useParams() 
     const [msg, setMsg] = useState("");
+    const [roomOwner, setRoomOwner] = useState();
+    const [username, setUsername] = useState('');
     const [room, setRoom] = useState();
 
     useEffect(()=>{
+        const user = DecodeJWT(sessionStorage.getItem("authToken"))
+        setUsername(user.username)
         FetchChatRoom(id).then((channel)=>{
             setRoom(channel)
+            setRoomOwner(channel.owner)
         })
         let socket = io("ws://127.0.0.1:3000/", {
             extraHeaders: {
@@ -38,9 +47,13 @@ export function ChannelPage() {
         SendMsg(id,msg)
     }
 
+    const handleBackBtn = () => {
+        navigate(`/content/${username}`)
+    }
     return (
         <section className="channel-page">
             <h3 className="channel-h3">{room && room.name}</h3>
+            <button className="channel-send-btn" onClick={handleBackBtn}>Back</button>
             <div className="channel-output">
            {room && room.msg.map((msg, i)=>{
             return(
