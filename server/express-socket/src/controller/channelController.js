@@ -1,7 +1,7 @@
 import socketService from "../service/socketService.js";
 import jwtUtils from "../utils/jwtUtils.js";
 
-function sendBroadcast(req, res) {
+function updateChannelList(req, res) {
   let subject = undefined;
   try {
     const claims = jwtUtils.serverVerification(req);
@@ -12,9 +12,9 @@ function sendBroadcast(req, res) {
 
   if (!subject == "server-communication" || subject == undefined)
     return "Wrong subject for intended action", 401;
-  socketService.broadcast("broadcast", req.body);
+  socketService.broadcast("channels", req.body);
 
   res.sendStatus(200);
 }
 
-export default { sendBroadcast };
+export default { updateChannelList };
