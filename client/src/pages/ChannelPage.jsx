@@ -54,9 +54,12 @@ export function ChannelPage() {
     }
 
     const handleDelBtn = () => {
-        if(username !== roomOwner || jwtRole !== 'admin') return false
-        DeleteChannel(id)
+        if(username === roomOwner || jwtRole === 'admin'){
+            DeleteChannel(id)
         navigate(`/content/${username}`)
+        }else{
+            return false
+        }
     }
     return (
         <section className="channel-page">
