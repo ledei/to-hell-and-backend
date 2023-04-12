@@ -1,13 +1,14 @@
 import socketService from "../service/socketService.js";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-dotenv.config();
+import jwtUtils from "../utils/jwtUtils.js";
 
 function sendBroadcast(req, res) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.replace("Bearer ", "");
-  const claims = jwt.verify(token, process.env.PUBLIC_JWT_KEY);
-  const subject = claims.sub;
+  let subject = undefined;
+  try {
+    const claims = jwtUtils.serverVerification(req);
+    subject = claims.sub;
+  } catch (err) {
+    console.log(req.ip, err.serverMessage);
+  }
 
   if (!subject == "server-communication")
     return "Wrong subject for intended action", 401;

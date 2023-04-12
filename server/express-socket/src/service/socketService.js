@@ -1,6 +1,5 @@
 import { Server } from "socket.io";
 import jwtUtils from "../utils/jwtUtils.js";
-import { error } from "console";
 
 const options = {
   cors: {

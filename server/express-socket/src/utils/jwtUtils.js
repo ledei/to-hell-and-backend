@@ -11,7 +11,7 @@ function userVerification(socket) {
     try {
       return jwt.verify(token, process.env.PUBLIC_JWT_KEY);
     } catch (err) {
-      let verfError = new Error(); //custom verification error
+      let verfError = new Error();
 
       if (err.name == "JsonWebTokenError") {
         verfError.clientMessage =
@@ -30,27 +30,32 @@ function userVerification(socket) {
   }
 }
 
-//    jwt.verify(token, process.env.PUBLIC_JWT_KEY, (err, payload) => {
-//     if (err) {
-//       let verfError = new Error();
+function serverVerification(request) {
+  const authHeader = request.headers["authorization"];
+  if (authHeader == undefined) {
+    res.status(400).send("Authorization header is missing");
+  } else {
+    const token = authHeader && authHeader.replace("Bearer ", "");
+    try {
+      return jwt.verify(token, process.env.PUBLIC_JWT_KEY);
+    } catch (err) {
+      let verfError = new Error();
 
-//       if (err.name == "JsonWebTokenError") {
-//         verfError.clientMessage =
-//           "Digital signing is invalid, request new token";
-//         verfError.serverMessage = "Token verification failed";
-//       }
+      if (err.name == "JsonWebTokenError") {
+        verfError.clientMessage =
+          "Digital signing is invalid, request new token";
+        verfError.serverMessage = "Token verification failed";
+      }
 
-//       if (err.name == "TokenExpiredError") {
-//         verfError.clientMessage =
-//           "Digital signing is invalid, request new token";
-//         verfError.serverMessage = "Token expired";
-//       }
+      if (err.name == "TokenExpiredError") {
+        verfError.clientMessage =
+          "Digital signing is invalid, request new token";
+        verfError.serverMessage = "Token expired";
+      }
 
-//       throw verfError;
-//     }
+      throw verfError;
+    }
+  }
+}
 
-//     return payload;
-//   });
-// }
-
-export default { userVerification };
+export default { userVerification, serverVerification };
