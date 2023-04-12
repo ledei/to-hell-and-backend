@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import FetchChannels from "../components/FetchChannels";
 import FetchBroadcast from "../components/FetchBroadcast";
 import { io } from 'socket.io-client';
+import { useParams } from "react-router-dom";
 
 export function LandingPage(){
     const [channels, setChannels] = useState([]); 
     const [broadcast, setBroadcast] = useState([]); 
+    const {username}  = useParams() 
 
 
     useEffect(()=>{
-        
+       
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
@@ -33,13 +35,11 @@ export function LandingPage(){
       });
 
       socket.on("channels", data => {
-       
-        setChannels(data)
+        FetchChannels().then((channels)=>{
+            setChannels(channels)
+        })
       });
     },[])
-
-    
-    
 
 
     function handleChannels(e){
@@ -51,7 +51,7 @@ export function LandingPage(){
 
     return(
         <>
-        <h1>Användarnamn</h1>
+        <h1>{username}</h1>
 
       
 

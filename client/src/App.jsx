@@ -6,15 +6,16 @@ import ChannelPage from "./pages/ChannelPage"
 
 function App() {
 
+
   return (
-    <div className="App">
+    
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/content" element={<LandingPage />} />
+        <Route path="/content/:username" element={<LandingPage />} />
         <Route path="/chatroom" element={ <ChannelPage/>} />
       </Routes>
    
-    </div>
+   
   )
 }
 

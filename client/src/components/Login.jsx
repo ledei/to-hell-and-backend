@@ -1,4 +1,5 @@
-import { Navigate, redirect } from "react-router-dom";
+
+
 import { FetchOptions } from "./FetchOptions";
 
 
@@ -19,12 +20,13 @@ export default async function Login(username,password) {
 
  
   if (response.status === 400) {
-    console.log(await response.text());
-  } else if (response.status === 401) {
-    console.log("wrong password or email");
+     return await response.text();
+  } else if (response.status === 404) {
+     return "Missing authentication details";
   } else {
     const authorizationToken = await response.text();
     sessionStorage.setItem("authToken", authorizationToken);
+    return response.status
   }
    
   
