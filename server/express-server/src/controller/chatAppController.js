@@ -65,7 +65,7 @@ async function getAllChannels(req, res) {
 async function deleteChannel(req, res) {
   const channel = await getRoom(req.params.id);
 
-  if (channel.owner == req.user.username) {
+  if (channel.owner == req.user.username || req.user.role == "admin") {
     const deleted = await deleteRoom(req.params.id);
 
     res.send(deleted);

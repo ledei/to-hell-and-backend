@@ -13,11 +13,13 @@ export function ChannelPage() {
     const [msg, setMsg] = useState("");
     const [roomOwner, setRoomOwner] = useState();
     const [username, setUsername] = useState('');
+    const [jwtRole, setJwtRole] = useState('');
     const [room, setRoom] = useState();
 
     useEffect(()=>{
-        const user = DecodeJWT(sessionStorage.getItem("authToken"))
-        setUsername(user.username)
+        const jwt = DecodeJWT(sessionStorage.getItem("authToken"))
+        setUsername(jwt.username)
+        setJwtRole(jwt.role)
         FetchChatRoom(id).then((channel)=>{
             setRoom(channel)
             setRoomOwner(channel.owner)
@@ -50,10 +52,17 @@ export function ChannelPage() {
     const handleBackBtn = () => {
         navigate(`/content/${username}`)
     }
+
+    const handleDelBtn = () => {
+        if(username !== roomOwner || jwtRole !== 'admin') return false
+        DeleteChannel(id)
+        navigate(`/content/${username}`)
+    }
     return (
         <section className="channel-page">
+            {username === roomOwner || jwtRole === 'admin' ? (<button className="channel-delete-btn" onClick={handleDelBtn} >Delete Room</button>): null}
             <h3 className="channel-h3">{room && room.name}</h3>
-            <button className="channel-send-btn" onClick={handleBackBtn}>Back</button>
+            <button className="channel-back-btn" onClick={handleBackBtn}>Back</button>
             <div className="channel-output">
            {room && room.msg.map((msg, i)=>{
             return(
