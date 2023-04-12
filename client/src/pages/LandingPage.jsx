@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import FetchChannels from "../components/FetchChannels";
 import FetchBroadcast from "../components/FetchBroadcast";
 import { io } from 'socket.io-client';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function LandingPage(){
+    let navigate = useNavigate()
     const [channels, setChannels] = useState([]); 
     const [broadcast, setBroadcast] = useState([]); 
     const {username}  = useParams() 
@@ -41,10 +42,12 @@ export function LandingPage(){
       });
     },[])
 
+    
 
     function handleChannels(e){
         let roomId = e.target.value
-        console.log(roomId);
+        if(roomId == '') return false
+        navigate(`/chatroom/${username}/${roomId}`)
     }
 
 
