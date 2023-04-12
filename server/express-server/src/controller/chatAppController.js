@@ -43,8 +43,11 @@ async function sendChannelMsg(req, res) {
     },
   };
 
-  const sendMsg = await updateRoom(data);
-  res.send(sendMsg);
+  const serverAccessToken = jwtUtils.generateServerToken();
+  await fetchOptions("http://127.0.0.1:3000/room", data, serverAccessToken);
+
+  await updateRoom(data);
+  res.status(201).send(data);
 }
 
 async function getChannel(req, res) {

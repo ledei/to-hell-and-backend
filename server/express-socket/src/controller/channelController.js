@@ -17,4 +17,20 @@ function updateChannelList(req, res) {
   res.sendStatus(200);
 }
 
-export default { updateChannelList };
+function updateChatRoom(req, res) {
+  let subject = undefined;
+  try {
+    const claims = jwtUtils.serverVerification(req);
+    subject = claims.sub;
+  } catch (err) {
+    console.log(req.ip, err.serverMessage);
+  }
+
+  if (!subject == "server-communication" || subject == undefined)
+    return "Wrong subject for intended action", 401;
+  socketService.sendToRoom(req.body.id, "recive-msg", req.body);
+
+  res.sendStatus(200);
+}
+
+export default { updateChannelList, updateChatRoom };

@@ -10,7 +10,7 @@ const options = {
 let io = undefined;
 let clients = [];
 
-function handleConnectAndDisconnect(socket) {
+function handleConnections(socket) {
   let username = undefined;
   try {
     const claims = jwtUtils.userVerification(socket);
@@ -32,15 +32,24 @@ function handleConnectAndDisconnect(socket) {
     delete clients[username];
     console.log(clients);
   });
+
+  socket.on("join-room", (room) => {
+    socket.join(room);
+  });
 }
 
 function broadcast(channel, message) {
   io.emit(channel, message);
 }
 
-function attach(container) {
-  io = new Server(container, options);
-  io.on("connection", handleConnectAndDisconnect);
+function sendToRoom(room, channel, message) {
+  console.log(room);
+  io.to(room).emit(channel, message);
 }
 
-export default { broadcast, attach };
+function attach(container) {
+  io = new Server(container, options);
+  io.on("connection", handleConnections);
+}
+
+export default { broadcast, attach, sendToRoom };
