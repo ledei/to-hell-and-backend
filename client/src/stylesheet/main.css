@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .login-page {
     display: flex;
     flex-direction: column;
@@ -6,4 +11,60 @@
 
 .first-page-logotype {
     width: 10em;
+}
+
+.channel-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(254, 251, 243)
+
+    /* background-color: rgb(220, 172, 53) */
+}
+
+.channel-h3 {
+    color: rgb(143, 112, 36);
+}
+
+.channel-output {
+    height: 87vh;
+    background-color: rgb(254, 251, 243)
+}
+
+.channel-msg-board {
+    display: flex;
+    margin: 1em .2em 1em .2em;
+    height: 5.5vh;
+}
+
+.channel-input {
+    /* background-color: blue; */
+    /* width: 60%; */
+    border-radius: 2em;
+    border: 0;
+    flex: 1 1 70%;
+    margin: 0em .1em 0em .1em;
+    background-color: rgb(220, 172, 53);
+    padding: 1em;
+}
+
+.channel-send-btn {
+    flex: 1 1 20%;
+    /* background-color: rgb(254, 251, 243); */
+    background-color: rgb(220, 172, 53);
+    color: white;
+    border: 0;
+    border-radius: 2em;
+    margin: 0em .1em 0em .3em;
+}
+
+/* .channel-p {
+    background-color: rgb(220, 172, 53);
+    max-width: 100%;
+    padding: 1em;
+    border-radius: 2em;
+} */
+
+.duck-icon {
+    width: 3em;
 }
