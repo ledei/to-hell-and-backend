@@ -13,10 +13,10 @@ export function LandingPage(){
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
-        // FetchBroadcast().then((msg)=>{
-        //     let latestBroadcastMsg = msg.length - 1
-        //     setBroadcast(msg[latestBroadcastMsg])
-        // })
+        FetchBroadcast().then((msg)=>{
+            let latestBroadcastMsg = msg.length - 1
+            setBroadcast(msg[latestBroadcastMsg])
+        })
 
         let socket = io("ws://127.0.0.1:3000/", {
         extraHeaders: {
@@ -30,6 +30,11 @@ export function LandingPage(){
 
       socket.on("broadcast", msg => {
         setBroadcast(msg)
+      });
+
+      socket.on("channels", data => {
+       
+        setChannels(data)
       });
     },[])
 

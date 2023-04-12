@@ -5,8 +5,9 @@ import {
   getAllRooms,
   getRoom,
   updateRoom,
-  updateUserChannel,
 } from "../service/chatAppService.js";
+import { fetchOptions } from "../util/fetchOptions.js";
+import jwtUtils from "../util/jwtUtils.js";
 
 async function createChannel(req, res) {
   const room = {
@@ -18,14 +19,15 @@ async function createChannel(req, res) {
   const existingRoom = await findRoom(room.name);
   if (existingRoom == null) {
     room.created = new Date();
-    const newRoom = await createRoom(room);
-
-    const userData = {
-      username: req.user.username,
-      channelId: newRoom.insertedId,
-    };
-    const addNewChannel = await updateUserChannel(userData);
-    res.send(addNewChannel);
+    await createRoom(room);
+    const rooms = await getAllRooms();
+    const serverAccessToken = jwtUtils.generateServerToken();
+    await fetchOptions(
+      "http://127.0.0.1:3000/channels",
+      rooms,
+      serverAccessToken
+    );
+    res.status(201).send(rooms);
   } else {
     res.status(400);
     res.send("room name already exist");
