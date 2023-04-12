@@ -20,14 +20,13 @@ async function createChannel(req, res) {
   if (existingRoom == null) {
     room.created = new Date();
     await createRoom(room);
-    const rooms = await getAllRooms();
     const serverAccessToken = jwtUtils.generateServerToken();
     await fetchOptions(
       "http://127.0.0.1:3000/channels",
-      rooms,
+      room,
       serverAccessToken
     );
-    res.status(201).send(rooms);
+    res.status(201).send(room);
   } else {
     res.status(400);
     res.send("room name already exist");
