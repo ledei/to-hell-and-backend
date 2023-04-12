@@ -3,16 +3,20 @@ import FetchChannels from "../components/FetchChannels";
 import FetchBroadcast from "../components/FetchBroadcast";
 import { io } from 'socket.io-client';
 import { useNavigate, useParams } from "react-router-dom";
+import DecodeJWT from "../components/DecodeJWT";
+import { InputBroadcastMsg } from "../components/InputBroadcastMsg";
 
 export function LandingPage(){
     let navigate = useNavigate()
     const [channels, setChannels] = useState([]); 
     const [broadcast, setBroadcast] = useState([]); 
+    const [jwtRole, setJwtRole] = useState('');
     const {username}  = useParams() 
 
 
     useEffect(()=>{
-       
+        const jwt = DecodeJWT(sessionStorage.getItem("authToken"))
+        setJwtRole(jwt.role)
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
@@ -78,6 +82,7 @@ export function LandingPage(){
                 })}
             </select>
         </section>
+        {jwtRole === 'admin' ? (<InputBroadcastMsg/>) : null}
        
         </>
     )
