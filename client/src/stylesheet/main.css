@@ -3,14 +3,36 @@ body {
     padding: 0;
 }
 
-.login-page {
+.first-page-logotype {
+    width: 10em;
+    margin: 2em 0em 4em 0em;
+}
+
+.login-page,
+.create-user-page {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.first-page-logotype {
-    width: 10em;
+.enter-username-label,
+.enter-password-label,
+.create-user-label,
+.create-password-label {
+    margin: .8em 0em .8em 0em;
+}
+
+.create-user-input,
+.create-password-input,
+.password-input,
+.username-input {
+    height: 3vh;
+    /* width: ; */
+}
+
+.login-btn,
+.new-user-btn {
+    margin-top: 5em;
 }
 
 .channel-page {
