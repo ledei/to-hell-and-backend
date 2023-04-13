@@ -34,11 +34,17 @@ export function LoginPage() {
 
           <h3>Logga in</h3>
 
-            <label className="enter-username-label">Användarnamn:</label>
-            <input type="text" className="username-input" onChange={handleUsername}/>
-            <label className="enter-password-label">Lösenord:</label>
-            <input type="password" className="password-input" onChange={handlePassword}/>
-            <p>{respone}</p>
+            <p>
+            {/* <label className="enter-username-label">Användarnamn:</label> */}
+            <input type="text" placeholder="Ange användarnamn" className="username-input" onChange={handleUsername}/>
+            </p>
+
+            <p>
+            {/* <label className="enter-password-label">Lösenord:</label> */}
+            <input type="password" placeholder="Ange Lösenord" className="password-input" onChange={handlePassword}/>
+            </p>
+
+            <p className="response">{respone}</p>
             <button className="login-btn" onClick={()=>{
               handlelogin()
             }}>Logga in</button>

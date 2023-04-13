@@ -1,11 +1,13 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #FFF9F1;
+    /* background-color: aquamarine; */
 }
 
 .first-page-logotype {
     width: 10em;
-    margin: 2em 0em 4em 0em;
+    margin: 2em 0em 1em 0em;
 }
 
 .login-page,
@@ -15,24 +17,63 @@ body {
     align-items: center;
 }
 
-.enter-username-label,
-.enter-password-label,
-.create-user-label,
-.create-password-label {
-    margin: .8em 0em .8em 0em;
+h3 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.5rem;
 }
 
 .create-user-input,
 .create-password-input,
 .password-input,
 .username-input {
-    height: 3vh;
-    /* width: ; */
+    font-family: 'Comfortaa', cursive;
+    height: 3.5vh;
+    width: 18em;
+    background-color: #FFF9F1;
+    border-style: none;
+    border-bottom: solid;
+}
+
+input:focus,
+textarea:focus{
+    outline: none;
+}
+
+.response {
+    color: #B75C34;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    width: 15em;
+    text-align: center;
 }
 
 .login-btn,
 .new-user-btn {
-    margin-top: 5em;
+    margin: 5em 0em 3em 0em;
+    height: 3em;
+    width: 70%;
+    background-color: #B75C34;
+    color: #FFF9F1;
+    border-radius: 5em;
+    border: 0;
+    box-shadow: 4px 4px 8px #dbd7d0;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.create-user-btn {
+    background-color: #FFF9F1;
+    border: 0;
+    text-decoration: underline;
+}
+
+.create-user-p {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Comfortaa', cursive;
+    font-size: .8rem;
 }
 
 .channel-page {

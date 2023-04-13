@@ -30,21 +30,21 @@ export function CreateUserPage() {
         
         <h3>Skapa ny användare</h3>
 
-            <p><label className="create-user-label">Välj användarnamn:</label>
+            <p className="create-user-p"><label className="create-user-label">Användarnamn:</label>
             <input onChange={(e) => setUsername(e.target.value)} type="text" className="create-user-input"/>
             </p>
 
-            <p>  
+            <p className="create-user-p">  
             <label className="firstname-label">Förnamn:</label>
             <input onChange={(e) => setFirstname(e.target.value)}type="text" className="create-user-input"/>
             </p>
 
-            <p>
+            <p className="create-user-p">
             <label className="lastname-label">Efternamn:</label>
             <input onChange={(e) => setLastname(e.target.value)}type="text" className="create-user-input"/>
             </p>
 
-            <p>
+            <p className="create-user-p">
             <label className="create-password-label">Välj lösenord:</label>
             <input onChange={(e) => setPassword(e.target.value)}type="password" className="create-password-input" />
             </p>
