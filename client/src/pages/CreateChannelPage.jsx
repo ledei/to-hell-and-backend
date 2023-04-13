@@ -19,7 +19,7 @@ function CreateChannelPage(){
             <label>Name your channel</label>
             <input type="text" onChange={(e)=>setChannelName(e.target.value)}/>
         </p>
-        <button onClick={handleCreateChannel}>Create Channel</button>
+        <button className="create-channel-btn" onClick={handleCreateChannel}>Create Channel</button>
         </>
     )
 }

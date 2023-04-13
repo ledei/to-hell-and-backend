@@ -28,7 +28,7 @@ export default function BroacdcastHistroyPage(){
     return (
         <section >
             <h3 >Broadcast</h3>
-            <button  onClick={handleBackBtn}>Back</button>
+            <button className="broadcast-btn" onClick={handleBackBtn}>Back</button>
             <div className="channel-output">
            {broadcast && broadcast.map((msg, i)=>{
             return(
