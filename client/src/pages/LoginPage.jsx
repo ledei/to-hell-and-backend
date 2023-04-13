@@ -38,10 +38,14 @@ export function LoginPage() {
             <input type="text" className="username-input" onChange={handleUsername}/>
             <label className="enter-password-label">Lösenord:</label>
             <input type="password" className="password-input" onChange={handlePassword}/>
+            <p>{respone}</p>
             <button className="login-btn" onClick={()=>{
               handlelogin()
             }}>Logga in</button>
-            <p>{respone}</p>
+              <button className="create-user-btn" onClick={()=>{
+              navigate('/create-user')
+            }}>Skapa ny användare</button>
+            
         </div>
 
 
