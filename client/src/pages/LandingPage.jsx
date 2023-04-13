@@ -3,20 +3,17 @@ import FetchChannels from "../components/FetchChannels";
 import FetchBroadcast from "../components/FetchBroadcast";
 import { io } from 'socket.io-client';
 import { useNavigate, useParams } from "react-router-dom";
-import DecodeJWT from "../components/DecodeJWT";
-import { InputBroadcastMsg } from "../components/InputBroadcastMsg";
+
 
 export function LandingPage(){
     let navigate = useNavigate()
     const [channels, setChannels] = useState([]); 
     const [broadcast, setBroadcast] = useState([]); 
-    const [jwtRole, setJwtRole] = useState('');
     const {username}  = useParams() 
 
 
     useEffect(()=>{
-        const jwt = DecodeJWT(sessionStorage.getItem("authToken"))
-        setJwtRole(jwt.role)
+    
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
@@ -58,6 +55,10 @@ export function LandingPage(){
         navigate(`/channel/${username}`)
     }
 
+    const seeBroadcastHistory=()=>{
+        navigate(`/broadcast/${username}`)
+    }
+
 
 
     return(
@@ -68,10 +69,10 @@ export function LandingPage(){
 
         <article>
             <h3>Broadcast</h3>
-            <div onClick={()=>console.log('hej')}>
-                <h2>{broadcast.title }</h2>
-                <p>{broadcast.content }</p>
-                <p>{broadcast.date}</p>
+            <div onClick={seeBroadcastHistory}>
+                <h2>{broadcast == undefined ? 'no msg': broadcast.title }</h2>
+                <p>{broadcast == undefined ? 'no msg':broadcast.content }</p>
+                <p>{broadcast == undefined ? null:broadcast.date}</p>
             </div>
         </article>
 
@@ -85,9 +86,9 @@ export function LandingPage(){
                      )
                 })}
             </select>
+            <button onClick={createChannel}>Create a channel!</button>
         </section>
-        <button onClick={createChannel}>Create a channel!</button>
-        {jwtRole === 'admin' ? (<InputBroadcastMsg/>) : null}
+       
        
         </>
     )
