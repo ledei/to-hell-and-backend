@@ -70,9 +70,9 @@ export function LandingPage(){
         <article>
             <h3>Broadcast</h3>
             <div onClick={seeBroadcastHistory}>
-                <h2>{broadcast.title }</h2>
-                <p>{broadcast.content }</p>
-                <p>{broadcast.date}</p>
+                <h2>{broadcast == undefined ? 'no msg': broadcast.title }</h2>
+                <p>{broadcast == undefined ? 'no msg':broadcast.content }</p>
+                <p>{broadcast == undefined ? null:broadcast.date}</p>
             </div>
         </article>
 
@@ -86,8 +86,9 @@ export function LandingPage(){
                      )
                 })}
             </select>
+            <button onClick={createChannel}>Create a channel!</button>
         </section>
-        <button onClick={createChannel}>Create a channel!</button>
+       
        
         </>
     )
