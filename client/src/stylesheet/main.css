@@ -26,14 +26,12 @@ body {
 .create-password-input,
 .password-input,
 .username-input {
-    background-color: greenyellow;
     height: 3vh;
     /* width: ; */
 }
 
 .login-btn,
 .new-user-btn {
-    background-color: blue;
     margin-top: 5em;
 }
 
