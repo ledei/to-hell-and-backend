@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import CreateUser from "../components/CreateUser";
 
-export function CreateUser() {
+export function CreateUserPage() {
 
     let navigate = useNavigate();
 
@@ -10,13 +11,14 @@ export function CreateUser() {
     const [lastname, setLastname] = useState('');
     const [password, setPassword] = useState('');
 
+
     const handleCreateUser = async () =>{
-       const res = CreateUser(username, firstname, lastname, password);
+       const res = await CreateUser(username, firstname, lastname, password);
 
        console.log(res)
 
-    //    if(res != 200) return false
-    //    navigate(`/content/${username}`)
+       if(res != 201) return false
+       navigate(`/content/${username}`)
 
     }
 
@@ -54,4 +56,4 @@ export function CreateUser() {
 
 }
 
-export default CreateUser
+export default CreateUserPage

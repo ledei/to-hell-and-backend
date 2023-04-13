@@ -30,7 +30,6 @@ async function registerUser(req, res) {
     last_name: req.body.last_name,
     password: req.body.password,
     role: "user",
-    channels: [],
   };
   if (UserDetails.email == "" || UserDetails.password == "") {
     res.status(400);
