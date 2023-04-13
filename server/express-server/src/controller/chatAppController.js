@@ -26,7 +26,7 @@ async function createChannel(req, res) {
       room,
       serverAccessToken
     );
-    res.status(201).send(room);
+    res.status(201).send("ok");
   } else {
     res.status(400);
     res.send("room name already exist");

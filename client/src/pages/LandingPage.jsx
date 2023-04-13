@@ -39,7 +39,7 @@ export function LandingPage(){
         setBroadcast(msg)
       });
 
-      socket.on("channels", data => {
+      socket.on("channels", ()=> {
         FetchChannels().then((channels)=>{
             setChannels(channels)
         })
@@ -52,6 +52,10 @@ export function LandingPage(){
         let roomId = e.target.value
         if(roomId == '') return false
         navigate(`/chatroom/${username}/${roomId}`)
+    }
+
+    const createChannel=()=>{
+        navigate(`/channel/${username}`)
     }
 
 
@@ -82,6 +86,7 @@ export function LandingPage(){
                 })}
             </select>
         </section>
+        <button onClick={createChannel}>Create a channel!</button>
         {jwtRole === 'admin' ? (<InputBroadcastMsg/>) : null}
        
         </>
