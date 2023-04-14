@@ -66,7 +66,7 @@ export function LandingPage(){
         <img className="landing-page-logotype" src="../src/img/duck.png" alt="duck" />
 
         <p>Inloggad som</p>
-        <h1 className="landing-page-h1">{username}</h1>
+        <h2 className="landing-page-h3">{username}</h2>
 
         <article className="landing-page-broadcast-container">
             {/* <h3>Broadcast</h3> */}
@@ -88,7 +88,7 @@ export function LandingPage(){
                      )
                 })}
             </select>
-            <button className="create-channel-btn" onClick={createChannel}>Skapa ny kanal</button>
+            <button className="create-channel-link" onClick={createChannel}>Skapa ny kanal</button>
         </section>
        
        

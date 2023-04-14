@@ -32,7 +32,7 @@ export function LoginPage() {
         <div className="login-page">
             <img className="first-page-logotype" src="./src/img/duck.png" alt="duck" />
 
-          <h3>Logga in</h3>
+          <h2>Logga in</h2>
 
             <p>
             {/* <label className="enter-username-label">Användarnamn:</label> */}

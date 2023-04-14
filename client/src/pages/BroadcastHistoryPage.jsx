@@ -27,13 +27,13 @@ export default function BroacdcastHistroyPage(){
     
     return (
         <section >
-            <h3 >Broadcast</h3>
+            <h3 className="broadcast-h3">Broadcast</h3>
             <button className="broadcast-btn" onClick={handleBackBtn}>Back</button>
             <div className="channel-output">
            {broadcast && broadcast.map((msg, i)=>{
             return(
                 <div key={i}>
-                <h4>{msg.title} <small>{msg.date}</small></h4>
+                <h4 className="broadcast-h4">{msg.title} <small>{msg.date}</small></h4>
                 <p>{msg.content}</p>
                 </div>
             )

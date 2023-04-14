@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import duckImg from "../img/duckIcon.png"
+import duckImg from "../img/duckling.svg"
 import { useNavigate, useParams } from "react-router-dom";
 import FetchChatRoom from "../components/FetchChatRoom";
 import SendMsg from "../components/SendMsg";
@@ -63,15 +63,19 @@ export function ChannelPage() {
     }
     return (
         <section className="channel-page">
-            {username === roomOwner || jwtRole === 'admin' ? (<button className="channel-delete-btn" onClick={handleDelBtn} >Delete Room</button>): null}
+        <p>Inloggad som</p>
+        <h2 className="landing-page-h2">{username}</h2>
+        <div className="landing-page-header">
+            {username === roomOwner || jwtRole === 'admin' ? (<button className="channel-delete-btn" onClick={handleDelBtn}>Ta bort kanal</button>): null}
+            <button className="channel-back-btn" onClick={handleBackBtn}>Tillbaka</button>
+        </div>
             <h3 className="channel-h3">{room && room.name}</h3>
-            <button className="channel-back-btn" onClick={handleBackBtn}>Back</button>
             <div className="channel-output">
            {room && room.msg.map((msg, i)=>{
             return(
-                <div key={i}>
-                <h4>{msg.author} <small>{msg.sent}</small></h4>
-                <p>{msg.content}</p>
+                <div className="channel-msg-frame" key={i}>
+                <h4 className="channel-userName">{msg.author} <small>{msg.sent}</small></h4>
+                <p className="channel-p">{msg.content}</p>
                 </div>
             )
            })}
@@ -79,8 +83,8 @@ export function ChannelPage() {
 
         <div className="channel-msg-board">
             <input className="channel-input" type="text" onChange={handleMsg} />
-            <button className="channel-send-btn" onClick={()=>handleSendMsg(id,msg)}>SKICKA</button>
-            <img className="duck-icon" src={duckImg} alt="duck" />
+            {/* <button className="channel-send-btn" onClick={()=>handleSendMsg(id,msg)}>SKICKA</button> */}
+            <img className="duck-btn" onClick={()=>handleSendMsg(id,msg)} src={duckImg} alt="duck" />
         </div>
         </section>
     )

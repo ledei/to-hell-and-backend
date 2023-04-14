@@ -28,7 +28,7 @@ export function CreateUserPage() {
         <div className="create-user-page">
             <img className="first-page-logotype" src="./src/img/duck.png" alt="duck" />
         
-        <h3>Skapa ny användare</h3>
+        <h2>Skapa ny användare</h2>
 
             <p className="create-user-p"><label className="create-user-label">Användarnamn:</label>
             <input onChange={(e) => setUsername(e.target.value)} type="text" className="create-user-input"/>
