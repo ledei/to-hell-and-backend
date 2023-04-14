@@ -7,13 +7,13 @@ export function InputBroadcastMsg(){
 
     return(
         <>
-        <div>
-            <h3>Send a broadcast message</h3>
-        <label htmlFor="broadcast-title">Title</label>
-        <input type="text" className="broadcast-title" onChange={(e)=>setTitle(e.target.value)}/>
-        <label htmlFor="broadcast-content">Content</label>
-        <input type="text" className="broadcast-content" onChange={(e)=>setContent(e.target.value)}/>
-        <button onClick={()=>SendBroadcastMsg(title,content)}>Send</button>
+        <div className="input-broadcast-msg">
+            <h3>Sänd ut nytt nödmeddelande</h3>
+        {/* <label htmlFor="broadcast-title">Title</label> */}
+        <input placeholder="Titel" type="text" className="broadcast-title" onChange={(e)=>setTitle(e.target.value)}/>
+        {/* <label htmlFor="broadcast-content">Content</label> */}
+        <input placeholder="Meddelande" type="text" className="broadcast-content" onChange={(e)=>setContent(e.target.value)}/>
+        <button className="send-broadcast-btn" onClick={()=>SendBroadcastMsg(title,content)}>sänd ut</button>
         </div>
         </>
     )

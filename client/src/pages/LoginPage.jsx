@@ -32,16 +32,26 @@ export function LoginPage() {
         <div className="login-page">
             <img className="first-page-logotype" src="./src/img/duck.png" alt="duck" />
 
-          <h3>Logga in</h3>
+          <h2>Logga in</h2>
 
-            <label className="enter-username-label">Användarnamn:</label>
-            <input type="text" className="username-input" onChange={handleUsername}/>
-            <label className="enter-password-label">Lösenord:</label>
-            <input type="password" className="password-input" onChange={handlePassword}/>
+            <p>
+            {/* <label className="enter-username-label">Användarnamn:</label> */}
+            <input type="text" placeholder="Ange användarnamn" className="username-input" onChange={handleUsername}/>
+            </p>
+
+            <p>
+            {/* <label className="enter-password-label">Lösenord:</label> */}
+            <input type="password" placeholder="Ange Lösenord" className="password-input" onChange={handlePassword}/>
+            </p>
+
+            <p className="response">{respone}</p>
             <button className="login-btn" onClick={()=>{
               handlelogin()
             }}>Logga in</button>
-            <p>{respone}</p>
+              <button className="create-user-btn" onClick={()=>{
+              navigate('/create-user')
+            }}>Skapa ny användare</button>
+            
         </div>
 
 
